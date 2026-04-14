@@ -51,15 +51,15 @@ class Trader:
                 sum_xx += t * t
                 sum_xy += mid_price * t
 
-                slope = (n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x ** 2)
-                intercept = (sum_y - slope * sum_x) / n
-                fair_value = slope * t + intercept
-
-                skew = mid_price - fair_value
                 if n < min_n:
                     if position != POSITION_LIMIT:
                         new_orders.append(Order(product, min(order_info["best_buy"], int(mid_price + our_skew)), POSITION_LIMIT - position))
                 else:
+                    slope = (n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x ** 2)
+                    intercept = (sum_y - slope * sum_x) / n
+                    fair_value = slope * t + intercept
+
+                    skew = mid_price - fair_value
                     if skew <= -skew_threshold: #we buy as much as possible
                         to_long = POSITION_LIMIT - position
                         new_orders.append(Order(product, min(order_info["best_buy"], int(mid_price + our_skew)), to_long))
