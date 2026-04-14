@@ -3,10 +3,11 @@ import plotly.graph_objects as go
 import json
 
 volume_threshold = 10
-product = 'TOMATOES'
+product = 'ASH_COATED_OSMIUM'
+has_trading_history = False
 
 # Load the CSV
-df = pd.read_csv('tradingData.csv', sep=';')
+df = pd.read_csv('prices_round_1_day_0.csv', sep=';')
 
 # Filter one product
 fig = go.Figure()
@@ -59,21 +60,22 @@ fig.add_trace(go.Scatter(
     name='Mid'
 ))
 
-with open('tradingHistory.json', 'r') as f:
-    trade_data = json.load(f)
+if has_trading_history:
+    with open('tradingHistory.json', 'r') as f:
+        trade_data = json.load(f)
 
-trades_df = (pd.DataFrame(trade_data['tradeHistory'])
-               .rename(columns={'quantity': 'volume'})
-               .query(f"symbol == '{product}'"))
+    trades_df = (pd.DataFrame(trade_data['tradeHistory'])
+                   .rename(columns={'quantity': 'volume'})
+                   .query(f"symbol == '{product}'"))
 
-buys = trades_df[trades_df['buyer'] == 'SUBMISSION']
-sells = trades_df[trades_df['seller'] == 'SUBMISSION']
+    buys = trades_df[trades_df['buyer'] == 'SUBMISSION']
+    sells = trades_df[trades_df['seller'] == 'SUBMISSION']
 
-max_quantity = max(buys.volume.max(), sells.volume.max())
-min_quantity = min(buys.volume.min(), sells.volume.min())
+    max_quantity = max(buys.volume.max(), sells.volume.max())
+    min_quantity = min(buys.volume.min(), sells.volume.min())
 
-plotInfo(buys, min_quantity, max_quantity, 'triangle-up', 'green', 'Buys', 0)
-plotInfo(sells, min_quantity, max_quantity, 'triangle-down', 'red', 'Sells', 0)
+    plotInfo(buys, min_quantity, max_quantity, 'triangle-up', 'green', 'Buys', 0)
+    plotInfo(sells, min_quantity, max_quantity, 'triangle-down', 'red', 'Sells', 0)
 
 fig.update_layout(
     title=f'{product} Orderbook over Time',
@@ -88,40 +90,41 @@ fig.show()
 
 # --- PnL Plot ---
 # Merge trades with accPrice to get mark-to-market price at each timestamp
-all_trades = trades_df[(trades_df['buyer'] == 'SUBMISSION') | (trades_df['seller'] == 'SUBMISSION')].copy()
-all_trades['signed_qty'] = all_trades.apply(
-    lambda r: r['volume'] if r['buyer'] == 'SUBMISSION' else -r['volume'], axis=1
-)
+if has_trading_history:
+    all_trades = trades_df[(trades_df['buyer'] == 'SUBMISSION') | (trades_df['seller'] == 'SUBMISSION')].copy()
+    all_trades['signed_qty'] = all_trades.apply(
+        lambda r: r['volume'] if r['buyer'] == 'SUBMISSION' else -r['volume'], axis=1
+    )
 
-# Compute running position and cash
-all_trades = all_trades.sort_values('timestamp')
-all_trades['position'] = all_trades['signed_qty'].cumsum()
-all_trades['cash'] = (-all_trades['signed_qty'] * all_trades['price']).cumsum()
+    # Compute running position and cash
+    all_trades = all_trades.sort_values('timestamp')
+    all_trades['position'] = all_trades['signed_qty'].cumsum()
+    all_trades['cash'] = (-all_trades['signed_qty'] * all_trades['price']).cumsum()
 
-# Merge with mid price to mark open position to market
-pnl = all_trades.merge(accPrice[['timestamp', 'price']], on='timestamp', how='left', suffixes=('_trade', '_mid'))
-pnl['price_mid'] = pnl['price_mid'].ffill()  # fill gaps with last known mid
-pnl['pnl'] = pnl['cash'] + pnl['position'] * pnl['price_mid']
+    # Merge with mid price to mark open position to market
+    pnl = all_trades.merge(accPrice[['timestamp', 'price']], on='timestamp', how='left', suffixes=('_trade', '_mid'))
+    pnl['price_mid'] = pnl['price_mid'].ffill()  # fill gaps with last known mid
+    pnl['pnl'] = pnl['cash'] + pnl['position'] * pnl['price_mid']
 
-fig2 = go.Figure()
-fig2.add_trace(go.Scatter(
-    x=pnl['timestamp'], y=pnl['pnl'],
-    mode='lines+markers',
-    line=dict(color='purple', width=2),
-    marker=dict(size=6),
-    name='PnL'
-))
-fig2.add_hline(y=0, line_dash='dash', line_color='grey')
+    fig2 = go.Figure()
+    fig2.add_trace(go.Scatter(
+        x=pnl['timestamp'], y=pnl['pnl'],
+        mode='lines+markers',
+        line=dict(color='purple', width=2),
+        marker=dict(size=6),
+        name='PnL'
+    ))
+    fig2.add_hline(y=0, line_dash='dash', line_color='grey')
 
-fig2.update_layout(
-    title=f'{product} Approximated PnL over Time',
-    xaxis_title='Timestamp',
-    yaxis_title='PnL (SeaShells)',
-    plot_bgcolor='white',
-    paper_bgcolor='white',
-    font=dict(color='black'),
-    xaxis=dict(gridcolor='lightgrey'),
-    yaxis=dict(gridcolor='lightgrey')
-)
+    fig2.update_layout(
+        title=f'{product} Approximated PnL over Time',
+        xaxis_title='Timestamp',
+        yaxis_title='PnL (SeaShells)',
+        plot_bgcolor='white',
+        paper_bgcolor='white',
+        font=dict(color='black'),
+        xaxis=dict(gridcolor='lightgrey'),
+        yaxis=dict(gridcolor='lightgrey')
+    )
 
-fig2.show()
+    fig2.show()
