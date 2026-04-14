@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 import json
 
 volume_threshold = 10
-product = 'EMERALDS'
+product = 'TOMATOES'
 
 # Load the CSV
 df = pd.read_csv('tradingData.csv', sep=';')
