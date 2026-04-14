@@ -3,11 +3,11 @@ import plotly.graph_objects as go
 import json
 
 volume_threshold = 10
-product = 'ASH_COATED_OSMIUM'
-has_trading_history = False
+product = 'INTARIAN_PEPPER_ROOT'
+has_trading_history = True
 
 # Load the CSV
-df = pd.read_csv('prices_round_1_day_0.csv', sep=';')
+df = pd.read_csv('tradingData.csv', sep=';')
 
 # Filter one product
 fig = go.Figure()

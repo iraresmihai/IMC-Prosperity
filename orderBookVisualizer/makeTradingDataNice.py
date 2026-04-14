@@ -11,4 +11,7 @@ csv_string = csv_string.replace('\\n', '\n')
 with open('tradingData.csv', 'w') as f:
     f.write(csv_string)
 
-print("Done — saved to tradingData.csv")
+with open("tradingHistory.json", "w") as f:
+    json.dump({"tradeHistory": data["tradeHistory"]}, f, indent=2)
+
+print("Done — saved to tradingData.csv and tradingHistory.json")
