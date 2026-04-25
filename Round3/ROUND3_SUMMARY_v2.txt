@@ -1,0 +1,89 @@
+============================================================
+ROUND 3 — SESSION 2 NOTES   (continuation of ROUND3_SUMMARY.txt)
+============================================================
+
+------------------------------------------------------------
+A. NEW DIAGNOSTIC PLOTS  (extraPlots.py)
+------------------------------------------------------------
+Built four extra views on top of the smile fit:
+  dollarResiduals.png       per-voucher (market - BS_smile_fit) over time
+  zScores.png               6-panel rolling z of IV residual + entry/exit bands
+  greeks.png                delta + gamma per voucher over time
+  smileResidualHeatmap.png  IV - smile_fit, strike x time
+
+Confirms VEV_5400 is structurally cheap (mean -$2.17, std $0.75) and
+VEV_5300 rich (+$1.34) consistently across all 3 days. Gamma rises into
+expiry -> hedge churn will increase in live round.
+
+------------------------------------------------------------
+B. THE MAGRITTE HINT  (La_trahison_des_images.png)
+------------------------------------------------------------
+"Ceci n'est pas une pipe" -> the apparent IV smile is NOT a real volatility
+surface. Likely interpretation: IMC settles open positions at BS using ONE
+flat sigma. The market smile is trader noise; fitting it absorbs real
+mispricing into the curve.
+
+------------------------------------------------------------
+C. FLAT-IV PLOTS  (extraPlotsFlat.py)
+------------------------------------------------------------
+Same diagnostics as extraPlots.py but benchmarked against a flat sigma
+instead of a parabolic smile. Residual structure unchanged — confirms the
+mispricing is real, not a smile-fit artifact.
+
+------------------------------------------------------------
+D. BASE IV STABILITY  (baseIV.py)
+------------------------------------------------------------
+Per-tick mean IV across tradable strikes is extremely stable:
+  pooled mean   1.2622 %/day
+  pooled std    0.0117 %/day  (CV < 1%)
+  day means     1.257, 1.264, 1.266  (drift < 1%)
+  1.2622 %/day * sqrt(252) = 20.04% annualized — suspiciously round.
+
+Conclusion: hard-code SIGMA = 0.01262/day. No tracking needed.
+
+------------------------------------------------------------
+E. SMART BACKTEST  (smartBacktest.py)
+------------------------------------------------------------
+Linear sizing on flat-IV $-residual:
+   target_pos = clip( -K_SIZE * residual_$,  ±POSITION_LIMIT )
++ MIN_TRADE_QTY and RESIDUAL_DEADZONE (only retarget if residual moved
+  more than the deadzone since last trade).
+Configurable: VOUCHER, SIGMA_FLAT, K_SIZE, deadzone, hedge, cross_spread.
+Reports both MTM PnL (market mark) and fair PnL (settlement mark).
+
+VEV_5400, 3 days, deadzone sweep:
+              MID exec       CROSS-SPREAD exec
+  dz=0.00     +55,881           -291,348
+  dz=0.30     +41,607           -145,294
+  dz=1.00     + 6,264              -469
+  dz=1.50     + 4,602            +  922   <-- best realistic
+
+Lessons:
+  - Mean-reversion stat-arb is destroyed by realistic spreads (half-spread
+    ~ residual std).
+  - Only the structural bias (hold to settlement) survives; ~$1k expected.
+  - MTM and fair PnL match within ~$500 -> sigma=0.01262 is a good guess.
+
+------------------------------------------------------------
+F. NEXT REFRAME  (not coded yet)
+------------------------------------------------------------
+"Ceci n'est pas une option" — drop BS entirely; treat vouchers as a
+correlated basket and trade pure price stat-arb. Candidates:
+  - pairwise spreads (5300-5400, 5400-5500)
+  - butterfly  2*5400 - 5300 - 5500
+  - cointegration vector across 5300/5400/5500
+Same end-of-round convergence intuition; no model risk.
+
+------------------------------------------------------------
+G. FILES ADDED THIS SESSION
+------------------------------------------------------------
+  extraPlots.py             extraPlotsFlat.py
+  baseIV.py                 smartBacktest.py
+  ROUND3_SUMMARY_v2.txt     (this file)
+
+  + outputs:
+  dollarResiduals.png  zScores.png  greeks.png  smileResidualHeatmap.png
+  dollarResiduals_flat.png  zScores_flat.png  greeks_flat.png
+  ivDeviationHeatmap_flat.png  baseIV.png
+  smartBacktest_VEV_5400_sigma1262.png
+  smartBacktest_sweep_VEV_5400.png

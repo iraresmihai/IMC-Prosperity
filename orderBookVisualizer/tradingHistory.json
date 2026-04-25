@@ -1,30 +1,93 @@
 {
   "tradeHistory": [
     {
+      "timestamp": 0,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12006.0,
+      "quantity": 11
+    },
+    {
+      "timestamp": 100,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12010.0,
+      "quantity": 20
+    },
+    {
+      "timestamp": 200,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12007.0,
+      "quantity": 10
+    },
+    {
+      "timestamp": 300,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12007.0,
+      "quantity": 11
+    },
+    {
+      "timestamp": 400,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12007.0,
+      "quantity": 9
+    },
+    {
+      "timestamp": 500,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12007.0,
+      "quantity": 10
+    },
+    {
+      "timestamp": 600,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12007.0,
+      "quantity": 9
+    },
+    {
       "timestamp": 1000,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9993.0,
+      "price": 9994.0,
       "quantity": 3
     },
     {
       "timestamp": 3100,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10012.0,
+      "price": 10011.0,
       "quantity": 6
     },
     {
       "timestamp": 5600,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9991.0,
+      "price": 9992.0,
       "quantity": 8
     },
     {
@@ -39,10 +102,19 @@
     {
       "timestamp": 7500,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10009.0,
+      "price": 10008.0,
+      "quantity": 5
+    },
+    {
+      "timestamp": 9900,
+      "buyer": "",
+      "seller": "SUBMISSION",
+      "symbol": "ASH_COATED_OSMIUM",
+      "currency": "XIRECS",
+      "price": 10004.0,
       "quantity": 5
     },
     {
@@ -51,43 +123,43 @@
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10004.0,
-      "quantity": 5
+      "price": 9992.0,
+      "quantity": 6
     },
     {
       "timestamp": 10100,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
-      "price": 12017.0,
+      "price": 12016.0,
       "quantity": 6
     },
     {
       "timestamp": 10600,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10010.0,
+      "price": 10009.0,
       "quantity": 10
     },
     {
       "timestamp": 12300,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9994.0,
+      "price": 9995.0,
       "quantity": 6
     },
     {
       "timestamp": 14600,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10010.0,
+      "price": 10009.0,
       "quantity": 4
     },
     {
@@ -101,39 +173,57 @@
     },
     {
       "timestamp": 18000,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9993.0,
+      "price": 9994.0,
       "quantity": 8
     },
     {
       "timestamp": 19200,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10009.0,
+      "price": 10008.0,
       "quantity": 2
+    },
+    {
+      "timestamp": 19300,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12015.0,
+      "quantity": 5
     },
     {
       "timestamp": 19400,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10009.0,
+      "price": 10008.0,
       "quantity": 9
     },
     {
       "timestamp": 19500,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9990.0,
+      "price": 9991.0,
       "quantity": 10
+    },
+    {
+      "timestamp": 20200,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12016.0,
+      "quantity": 1
     },
     {
       "timestamp": 20200,
@@ -142,15 +232,15 @@
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
       "price": 12016.0,
-      "quantity": 5
+      "quantity": 4
     },
     {
       "timestamp": 20300,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10009.0,
+      "price": 10008.0,
       "quantity": 2
     },
     {
@@ -164,38 +254,38 @@
     },
     {
       "timestamp": 22500,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9994.0,
+      "price": 9995.0,
       "quantity": 5
     },
     {
       "timestamp": 22800,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
-      "price": 12029.0,
+      "price": 12028.0,
       "quantity": 4
     },
     {
       "timestamp": 23000,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10009.0,
+      "price": 10008.0,
       "quantity": 4
     },
     {
       "timestamp": 24300,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10009.0,
+      "price": 10008.0,
       "quantity": 4
     },
     {
@@ -209,30 +299,39 @@
     },
     {
       "timestamp": 28800,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9993.0,
+      "price": 9994.0,
       "quantity": 10
     },
     {
       "timestamp": 28800,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
-      "price": 12035.0,
+      "price": 12034.0,
       "quantity": 4
     },
     {
       "timestamp": 29000,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9991.0,
+      "price": 9992.0,
       "quantity": 6
+    },
+    {
+      "timestamp": 29300,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12025.0,
+      "quantity": 4
     },
     {
       "timestamp": 31700,
@@ -254,47 +353,47 @@
     },
     {
       "timestamp": 34000,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
-      "price": 12027.0,
-      "quantity": 6
+      "price": 12028.0,
+      "quantity": 4
     },
     {
       "timestamp": 36200,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9993.0,
+      "price": 9994.0,
       "quantity": 3
     },
     {
       "timestamp": 36900,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9989.0,
+      "price": 9990.0,
       "quantity": 3
     },
     {
       "timestamp": 37600,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10011.0,
+      "price": 10010.0,
       "quantity": 9
     },
     {
       "timestamp": 38500,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10009.0,
+      "price": 10008.0,
       "quantity": 9
     },
     {
@@ -318,19 +417,19 @@
     {
       "timestamp": 41700,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10008.0,
+      "price": 10007.0,
       "quantity": 8
     },
     {
       "timestamp": 43100,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9993.0,
+      "price": 9994.0,
       "quantity": 2
     },
     {
@@ -353,11 +452,11 @@
     },
     {
       "timestamp": 44700,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9993.0,
+      "price": 9994.0,
       "quantity": 2
     },
     {
@@ -371,29 +470,29 @@
     },
     {
       "timestamp": 48200,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9990.0,
+      "price": 9991.0,
       "quantity": 2
     },
     {
       "timestamp": 48400,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9990.0,
+      "price": 9991.0,
       "quantity": 8
     },
     {
       "timestamp": 49400,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10006.0,
+      "price": 10005.0,
       "quantity": 5
     },
     {
@@ -416,65 +515,65 @@
     },
     {
       "timestamp": 51300,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9989.0,
+      "price": 9990.0,
       "quantity": 9
     },
     {
       "timestamp": 53200,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
-      "price": 12060.0,
+      "price": 12059.0,
       "quantity": 4
     },
     {
       "timestamp": 54000,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9989.0,
+      "price": 9990.0,
       "quantity": 6
     },
     {
       "timestamp": 54300,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10004.0,
+      "price": 10003.0,
       "quantity": 4
     },
     {
       "timestamp": 54800,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10004.0,
+      "price": 10003.0,
       "quantity": 10
     },
     {
       "timestamp": 57200,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9989.0,
+      "price": 9990.0,
       "quantity": 5
     },
     {
       "timestamp": 57800,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9987.0,
+      "price": 9988.0,
       "quantity": 8
     },
     {
@@ -489,11 +588,20 @@
     {
       "timestamp": 59600,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10002.0,
+      "price": 10001.0,
       "quantity": 7
+    },
+    {
+      "timestamp": 59600,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12055.0,
+      "quantity": 4
     },
     {
       "timestamp": 61200,
@@ -507,10 +615,10 @@
     {
       "timestamp": 62600,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10006.0,
+      "price": 10005.0,
       "quantity": 5
     },
     {
@@ -534,10 +642,10 @@
     {
       "timestamp": 65800,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10005.0,
+      "price": 10004.0,
       "quantity": 2
     },
     {
@@ -560,65 +668,65 @@
     },
     {
       "timestamp": 68500,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9989.0,
+      "price": 9990.0,
       "quantity": 6
     },
     {
       "timestamp": 68500,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
-      "price": 12078.0,
+      "price": 12077.0,
       "quantity": 7
     },
     {
       "timestamp": 69100,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9989.0,
+      "price": 9990.0,
       "quantity": 5
     },
     {
       "timestamp": 69300,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10005.0,
+      "price": 10004.0,
       "quantity": 6
     },
     {
       "timestamp": 71000,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
-      "price": 12078.0,
+      "price": 12077.0,
       "quantity": 7
     },
     {
       "timestamp": 71100,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9990.0,
+      "price": 9991.0,
       "quantity": 9
     },
     {
       "timestamp": 72900,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9992.0,
+      "price": 9993.0,
       "quantity": 3
     },
     {
@@ -640,6 +748,15 @@
       "quantity": 5
     },
     {
+      "timestamp": 74400,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12070.0,
+      "quantity": 4
+    },
+    {
       "timestamp": 76200,
       "buyer": "",
       "seller": "",
@@ -651,6 +768,69 @@
     {
       "timestamp": 77000,
       "buyer": "",
+      "seller": "SUBMISSION",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12083.0,
+      "quantity": 3
+    },
+    {
+      "timestamp": 79700,
+      "buyer": "",
+      "seller": "SUBMISSION",
+      "symbol": "ASH_COATED_OSMIUM",
+      "currency": "XIRECS",
+      "price": 10003.0,
+      "quantity": 9
+    },
+    {
+      "timestamp": 82300,
+      "buyer": "",
+      "seller": "SUBMISSION",
+      "symbol": "ASH_COATED_OSMIUM",
+      "currency": "XIRECS",
+      "price": 10006.0,
+      "quantity": 2
+    },
+    {
+      "timestamp": 82300,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12078.0,
+      "quantity": 3
+    },
+    {
+      "timestamp": 83600,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "ASH_COATED_OSMIUM",
+      "currency": "XIRECS",
+      "price": 9990.0,
+      "quantity": 7
+    },
+    {
+      "timestamp": 86900,
+      "buyer": "",
+      "seller": "SUBMISSION",
+      "symbol": "ASH_COATED_OSMIUM",
+      "currency": "XIRECS",
+      "price": 10005.0,
+      "quantity": 8
+    },
+    {
+      "timestamp": 87800,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "INTARIAN_PEPPER_ROOT",
+      "currency": "XIRECS",
+      "price": 12082.0,
+      "quantity": 4
+    },
+    {
+      "timestamp": 87900,
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
@@ -658,57 +838,12 @@
       "quantity": 3
     },
     {
-      "timestamp": 79700,
-      "buyer": "",
-      "seller": "",
-      "symbol": "ASH_COATED_OSMIUM",
-      "currency": "XIRECS",
-      "price": 10004.0,
-      "quantity": 2
-    },
-    {
-      "timestamp": 82300,
-      "buyer": "",
-      "seller": "",
-      "symbol": "ASH_COATED_OSMIUM",
-      "currency": "XIRECS",
-      "price": 10007.0,
-      "quantity": 2
-    },
-    {
-      "timestamp": 83600,
-      "buyer": "",
-      "seller": "",
-      "symbol": "ASH_COATED_OSMIUM",
-      "currency": "XIRECS",
-      "price": 9989.0,
-      "quantity": 7
-    },
-    {
-      "timestamp": 86900,
-      "buyer": "",
-      "seller": "",
-      "symbol": "ASH_COATED_OSMIUM",
-      "currency": "XIRECS",
-      "price": 10006.0,
-      "quantity": 8
-    },
-    {
-      "timestamp": 87800,
-      "buyer": "",
-      "seller": "",
-      "symbol": "INTARIAN_PEPPER_ROOT",
-      "currency": "XIRECS",
-      "price": 12081.0,
-      "quantity": 4
-    },
-    {
       "timestamp": 90600,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
-      "price": 12097.0,
+      "price": 12096.0,
       "quantity": 5
     },
     {
@@ -723,37 +858,37 @@
     {
       "timestamp": 91300,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10010.0,
+      "price": 10009.0,
       "quantity": 7
     },
     {
       "timestamp": 92400,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
-      "price": 12086.0,
+      "price": 12087.0,
       "quantity": 5
     },
     {
       "timestamp": 93300,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 9994.0,
+      "price": 9995.0,
       "quantity": 2
     },
     {
       "timestamp": 95200,
       "buyer": "",
-      "seller": "",
+      "seller": "SUBMISSION",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
-      "price": 10011.0,
+      "price": 10010.0,
       "quantity": 4
     },
     {
@@ -767,29 +902,38 @@
     },
     {
       "timestamp": 96900,
-      "buyer": "",
-      "seller": "",
-      "symbol": "ASH_COATED_OSMIUM",
-      "currency": "XIRECS",
-      "price": 9991.0,
-      "quantity": 5
-    },
-    {
-      "timestamp": 97300,
-      "buyer": "",
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "ASH_COATED_OSMIUM",
       "currency": "XIRECS",
       "price": 9992.0,
+      "quantity": 5
+    },
+    {
+      "timestamp": 97300,
+      "buyer": "SUBMISSION",
+      "seller": "",
+      "symbol": "ASH_COATED_OSMIUM",
+      "currency": "XIRECS",
+      "price": 9993.0,
       "quantity": 3
     },
     {
-      "timestamp": 99500,
+      "timestamp": 98200,
       "buyer": "",
+      "seller": "SUBMISSION",
+      "symbol": "ASH_COATED_OSMIUM",
+      "currency": "XIRECS",
+      "price": 10002.0,
+      "quantity": 7
+    },
+    {
+      "timestamp": 99500,
+      "buyer": "SUBMISSION",
       "seller": "",
       "symbol": "INTARIAN_PEPPER_ROOT",
       "currency": "XIRECS",
-      "price": 12093.0,
+      "price": 12094.0,
       "quantity": 3
     }
   ]

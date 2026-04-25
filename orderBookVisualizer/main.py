@@ -1,10 +1,19 @@
 import pandas as pd
 import plotly.graph_objects as go
 import json
+import makeTradingDataNice
 
 volume_threshold = 10
-product = 'INTARIAN_PEPPER_ROOT'
+product = 'ASH_COATED_OSMIUM'
 has_trading_history = True
+make_load = True
+make_price_chart_simulated = False
+
+#TO DO!! PRINT YOUR FOUND PRICES USING ALLLOGS.JSON
+#TO DO!! SEE TRADES OF OTHER BOTS AS WELL
+if make_load:
+    makeTradingDataNice.makeLoad()
+
 
 # Load the CSV
 df = pd.read_csv('tradingData.csv', sep=';')
@@ -88,6 +97,7 @@ fig.update_layout(
 
 fig.show()
 
+#TO DO! ADD POSITION LIVE ON GRAPH
 # --- PnL Plot ---
 # Merge trades with accPrice to get mark-to-market price at each timestamp
 if has_trading_history:

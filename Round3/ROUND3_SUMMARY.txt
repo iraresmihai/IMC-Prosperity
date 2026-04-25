@@ -1,0 +1,211 @@
+============================================================
+IMC PROSPERITY 4 — ROUND 3 — "GLOVES OFF"
+Project summary & working notes
+============================================================
+
+User: Rares  (riordache@ethz.ch)
+Participant in IMC Prosperity 4 trading challenge, currently Round 3.
+Scope of this summary: ALGORITHMIC challenge only (manual Bio-Pods challenge not covered).
+
+------------------------------------------------------------
+1. ROUND SETTING
+------------------------------------------------------------
+- Planet "Solvenar". Start of Great Orbital Ascension Trials (GOAT).
+- All teams start at zero PnL; leaderboard reset.
+- Trading days last 48 hours of real time.
+- Source: Round 3 - "Gloves Off".mhtml (saved Notion page)
+
+------------------------------------------------------------
+2. PRODUCTS
+------------------------------------------------------------
+Delta-1 products (mean-reverting, similar to earlier rounds):
+  HYDROGEL_PACK            pos limit 200   trades ~10000 (std 31.9)
+  VELVETFRUIT_EXTRACT (VEV) pos limit 200   mean 5250, daily vol ~1.73%
+
+Options — 10 European call vouchers on VEV, pos limit 300 each:
+  VEV_4000, VEV_4500, VEV_5000, VEV_5100, VEV_5200,
+  VEV_5300, VEV_5400, VEV_5500, VEV_6000, VEV_6500
+  (label = strike; "V"elvetfruit "E"xtract "V"oucher)
+
+Expiry:
+  7-day expiration starting from Round 1.
+  TTE = 5 days at start of Round 3 LIVE simulation.
+  Historical days: day 0 = 8d TTE (tutorial), day 1 = 7d, day 2 = 6d.
+  Cannot exercise before expiry.
+  Inventory DOES NOT carry to Round 4.
+  Open positions liquidated at hidden fair value at round end.
+
+------------------------------------------------------------
+3. KEY MARKET STATISTICS (3 days of historical data, 10 000 ticks/day)
+------------------------------------------------------------
+Realized volatility (per-day %, tick-return std * sqrt(10000)):
+  HYDROGEL_PACK           2.17
+  VELVETFRUIT_EXTRACT     2.16
+  VEV_4000               11.34  (dominated by intrinsic)
+  VEV_4500               16.71
+  VEV_5000               38.61
+  VEV_5100               51.51
+  VEV_5200               72.22
+  VEV_5300              108.45
+  VEV_5400              176.16
+  VEV_5500              282.87
+  VEV_6000                0.00  (floor-pinned at 0.5, no variance)
+  VEV_6500                0.00  (floor-pinned at 0.5, no variance)
+
+Correlation structure (log-return Pearson, 3 days pooled):
+  - HYDROGEL_PACK is UNCORRELATED with everything (~0.01) -> trade standalone.
+  - VEV <-> vouchers: highest near ATM (VEV_5100 0.76, VEV_5200 0.72).
+  - Voucher-to-voucher: neighbors 0.84-0.91, distant pairs 0.28-0.46.
+  - VEV_6000/6500 correlations undefined (zero variance).
+
+Average extrinsic (time) value at avg S=5250 (3-day mean):
+  K=4000: ~0    K=4500: ~0    K=5000: +5.6    K=5100: +17.7
+  K=5200: +45.5  K=5300: +46.9 (peak)  K=5400: +16.0  K=5500: +6.7
+  K=6000: +0.5 (floor)  K=6500: +0.5 (floor)
+  -> Time value peaks around ATM (K=5200/5300).
+
+------------------------------------------------------------
+4. IMPLIED VOLATILITY ANALYSIS
+------------------------------------------------------------
+Method: invert Black-Scholes per voucher per tick to get sigma_impl,
+        plot vs log-moneyness m = log(K/S), fit parabolic smile.
+Tradable band: K = 5000..5500 (6 strikes with meaningful time value).
+Excluded:
+  - K=4000, 4500 (trade AT intrinsic, IV = numerical artifact)
+  - K=6000, 6500 (floor-pinned at 0.5, IV also artifact)
+
+Findings:
+  * Smile almost flat: a ~ 0.08 on m^2 (real equities usually 0.5-2.0).
+    Market is pricing very BS-consistently.
+  * Pooled IV ~ 1.25%/day ~ 19.8% annualized.
+  * REALIZED vol of VEV is 1.72%/day -> implied LOWER than realized
+    (options slightly cheap vs realized, in aggregate).
+
+Per-strike mean residual vs pooled fit (IV - fit, %/day):
+  VEV_5000  -0.004  (neutral)
+  VEV_5100  -0.004  (neutral)
+  VEV_5200  +0.015  (slightly rich)
+  VEV_5300  +0.027  (rich)
+  VEV_5400  -0.061  (CHEAP, ~3 sigma persistent) <-- main signal
+  VEV_5500  +0.028  (rich)
+
+Trade idea: VEV_5400 is the standout cheap strike.
+Butterfly candidate: long VEV_5400, short adjacent VEV_5300 + VEV_5500.
+
+------------------------------------------------------------
+5. TRADING STRATEGY (volatility stat-arb)
+------------------------------------------------------------
+Conceptually identical to pairs stat-arb, with BS as the fair-value model.
+
+Loop each tick:
+  1. S = mid(VEV)   [mid = avg of highest-VOLUME best bid and best ask]
+  2. Fit quadratic smile on tradable strikes (K=5000..5500).
+  3. iv_market = BS^-1(C_market, S, K, T)
+  4. iv_fit    = smile(log(K/S))
+  5. resid = iv_market - iv_fit
+  6. z = (resid - rolling_mean) / rolling_std     # over ~1000 ticks
+  7. If z < -ENTRY_Z  -> long   POSITION_LIMIT (cheap, buy)
+     If z > +ENTRY_Z  -> short -POSITION_LIMIT (rich, sell)
+     If |z| < EXIT_Z  -> flat
+     Else hold current position.
+  8. Delta-hedge: short (delta * voucher_pos) of VEV.
+  9. PnL = cash + voucher_pos*voucher_mid + vev_pos*vev_mid
+
+Why this makes money despite never exercising:
+  - Market price convergence: the voucher is tradable directly; sell it back
+    when it reverts toward fair.
+  - End-of-round liquidation at hidden fair value — open positions get
+    marked to IMC's "true" fair value, capturing mispricing deterministically.
+  - Theta / time value decay — shorting rich extrinsic collects the decay.
+
+------------------------------------------------------------
+6. KEY CONVENTION (used across ALL scripts)
+------------------------------------------------------------
+price = avg(best_bid, best_ask) per timestamp,
+        where "best" = the level (1, 2, or 3) with HIGHEST VOLUME
+        (NOT necessarily level 1).
+Rationale: top-of-book prices with low size are noisier than deeper
+levels with real depth. User's consistent definition across all analyses.
+
+------------------------------------------------------------
+7. FILES IN Round3/
+------------------------------------------------------------
+Data:
+  ROUND_3Data/prices_round_3_day_{0,1,2}.csv   order book snapshots
+  ROUND_3Data/trades_round_3_day_{0,1,2}.csv   historical trades
+  Round 3 - "Gloves Off".mhtml                 Notion problem statement
+  datamodel.py                                 IMC's provided schemas
+
+Scripts (editable config at top of each):
+  priceVisualizer.py  simple per-product line plot. Edit PRODUCTS + DAYS.
+  dashboard.py        4-panel overview: HYDROGEL, VEV, all vouchers (log y),
+                      smile snapshot. Also outputs avgSmile.png (time-averaged
+                      voucher price vs strike, annotated with extrinsic).
+  statistics.py       per-day volatility table + log-return correlation matrix.
+  ivSmile.py          implied-vol smile with parabolic fit + per-strike
+                      residual bar chart.
+  backtest.py         stat-arb backtest on one voucher.
+                      Knobs: VOUCHER, ENTRY_Z, EXIT_Z, ROLLING_WINDOW,
+                      POSITION_LIMIT, VEV_LIMIT, DELTA_HEDGE, CROSS_SPREAD, DAYS.
+
+Outputs:
+  dashboard.png             4-panel market overview
+  avgSmile.png              time-avg voucher price vs strike
+  volatility_table.csv      per-day vol per product
+  correlation_table.csv     full log-return correlation matrix
+  correlationHeatmap.png    heatmap of the above
+  ivSmile.png               3 panels: IV smile scatter + IV time series + residuals
+  backtest_<VOUCHER>.png    4 panels: price, z-score, positions, PnL
+
+------------------------------------------------------------
+8. BACKTEST BASELINE (VEV_5400, default settings)
+------------------------------------------------------------
+Settings: entry +/-2 sigma, exit +/-0.5 sigma, window 1000, delta_hedge=True,
+          cross_spread=False (trading at mid, optimistic).
+
+Results (over all 3 days of historical data):
+  FINAL PnL          +98032.50
+  Max drawdown         -321.00
+  Voucher trades         1560
+  VEV hedge trades       3976
+  Day-0 PnL          +26528.50
+  Day-1 PnL          +35566.00
+  Day-2 PnL          +35938.00
+
+CAVEAT: Trading at mid is the BEST CASE. Real execution pays ask / receives
+bid -> set CROSS_SPREAD=True for the realistic lower bound.
+~1560 voucher trades, each ~300 units, at half-spread ~0.5 -> up to ~234k
+of spread cost might be attributed, meaning realistic PnL is materially lower.
+
+------------------------------------------------------------
+9. OPEN QUESTIONS / TO-DO
+------------------------------------------------------------
+- [ ] Re-run backtest with CROSS_SPREAD=True for realistic PnL.
+- [ ] Parameter sweep (ENTRY_Z, EXIT_Z, ROLLING_WINDOW) across all 6 tradable
+      vouchers to find the best config.
+- [ ] Build BS-residual *time series* (panel #2 that was offered but not yet
+      built): $ mispricing per voucher over time, for dynamic signal detection
+      beyond baseline bias.
+- [ ] HYDROGEL_PACK standalone strategy: mean-reversion characterization
+      (autocorrelation, scatter of next-N-tick return vs deviation from 10000).
+- [ ] Manual challenge: Bio-Pods two-bid optimization
+        reserve prices uniform on [670, 920] increments of 5
+        sells next day at 920
+        penalty on b2: ((920 - avg_b2)/(920 - b2))^3 if b2 <= avg_b2 of all players
+- [ ] Other delta-1 product (VELVETFRUIT_EXTRACT) — also appears mean-reverting;
+      consider trading it standalone alongside its role as hedge underlying.
+
+------------------------------------------------------------
+10. USEFUL SNIPPETS
+------------------------------------------------------------
+Black-Scholes inversion, bisection (used everywhere):
+  norm_cdf(x) = 0.5 * (1 + erf(x / sqrt(2)))
+  bs_call(S, K, T, sigma) uses d1 = (log(S/K) + 0.5*sigma^2*T) / (sigma*sqrt(T))
+  implied_vol bisects sigma in [1e-5, 5.0] until BS(S,K,T,sigma) matches market C
+
+TTE convention (days):
+  T(day d, ts) = TTE_AT_START[d] - ts / 1_000_000
+  where TTE_AT_START = {0: 8.0, 1: 7.0, 2: 6.0}
+  Round 3 LIVE starts with TTE = 5.0 days.
+
+Tick grid: timestamp in {0, 100, 200, ..., 999900}  -> 10 000 ticks per day.
